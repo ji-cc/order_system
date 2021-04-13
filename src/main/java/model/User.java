@@ -38,4 +38,14 @@ public class User {
     public void setIsAdmin(int isAdmin) {
         this.isAdmin = isAdmin;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "UserId=" + UserId +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", isAdmin=" + isAdmin +
+                '}';
+    }
 }
