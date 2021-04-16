@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
     // 构造的 JSON 响应对象
     static class Response {  // 响应类
         public int ok;
-        public String reson;
+        public String reason;
         public String name;
         public int isAdmin;
     }
@@ -57,13 +57,13 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = req.getSession(true);  // 创建一个新的 session 对象
             session.setAttribute("user",user);   // user 对象存进去
             response.ok = 1;
-            response.reson = "";
+            response.reason = "";
             response.name = user.getName();
             response.isAdmin = user.getIsAdmin();
         } catch (OrderSystemException e) {
             // 4.如果登录失败，就返回错误提示
             response.ok = 0;
-            response.reson = e.getMessage();  // "用户名或密码错误"
+            response.reason = e.getMessage();  // "用户名或密码错误"
         } finally {
             // 6.构造响应数据
             resp.setContentType("application/json; charset=utf-8");
@@ -90,12 +90,12 @@ public class LoginServlet extends HttpServlet {
             }
             // 3.把 user 中的信息填充进返回值结果中
             response.ok = 1;
-            response.reson = "";
+            response.reason = "";
             response.name = user.getName();
             response.isAdmin = user.getIsAdmin();
         } catch (OrderSystemException e) {
             response.ok = 0;
-            response.reson = e.getMessage();
+            response.reason = e.getMessage();
         } finally {
             resp.setContentType("application/json; charset=utf-8");
             String jsonString = gson.toJson(response);

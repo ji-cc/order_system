@@ -28,7 +28,7 @@ public class RegisterServlet extends HttpServlet {
     // 构造的 JSON 响应对象
     static class Response {  // 响应类
         public int ok;
-        public String reson;
+        public String reason;
     }
 
     // 实际开发中异常处理这样的语法对于处理逻辑中的一些错误情况是非常有帮助的
@@ -57,10 +57,10 @@ public class RegisterServlet extends HttpServlet {
             user.setIsAdmin(0);
             userDao.add(user);
             response.ok = 1;
-            response.reson = "";
+            response.reason = "";
         } catch (OrderSystemException e) {
             response.ok = 0;
-            response.reson = e.getMessage();  // getMessage():得到的是"当前用户名已经存在"
+            response.reason = e.getMessage();  // getMessage():得到的是"当前用户名已经存在"
         }finally {
             // 5.构造响应数据
             String jsonString = gson.toJson(response);
